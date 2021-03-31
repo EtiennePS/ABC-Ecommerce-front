@@ -1,5 +1,5 @@
 import AbstractAbcService from "@/services/AbstractAbcService";
-import User from "@/models/user";
+import User from "@/models/User";
 
 class UserService extends AbstractAbcService {
     constructor() {
