@@ -1,3 +1,5 @@
+import store from '@/main';
+
 export default class AbstractAbcService {
   constructor() {
     if (this.constructor === AbstractAbcService) {
@@ -11,10 +13,12 @@ export default class AbstractAbcService {
   entityRoute;
 
   getConfig(options = undefined) {
+    const token = (store.state.user && store.state.user.token) ? store.state.user.token : "";
+    console.log(token);
     return {
       baseURL: process.env.VUE_APP_API_URL,
+      headers: { Authorization: "Bearer " + token },
       params: {
-        key: process.env.VUE_APP_API_KEY,
         ...options
       }
     };
@@ -68,10 +72,10 @@ export default class AbstractAbcService {
   }
 
   getAll(onSuccess, onFail, onDone, options) {
-    this.doGet(this.entityRoute, onSuccess, onFail, onDone, options);
+    this.doGet(this.entityRoute + "/", onSuccess, onFail, onDone, options);
   }
 
   create(data, onSuccess, onFail, onDone, options) {
-      this.doPost(data, this.entityRoute, onSuccess, onFail, onDone, options);
+      this.doPost(data, this.entityRoute + "/", onSuccess, onFail, onDone, options);
   }
 }

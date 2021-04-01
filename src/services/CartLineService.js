@@ -12,6 +12,10 @@ class CartLineService extends AbstractAbcService {
         onDone();
         onFail("CartLine creation is not supported in Ecommerce, please choose your options on Configurator and add your product from there.");
     }
+
+    getUserCart(onSuccess, onFail, onDone, options) {
+        this.doGet(this.entityRoute + "/mines", onSuccess, onFail, onDone, options);
+    }
 }
 
 const cartLineService = new CartLineService();
