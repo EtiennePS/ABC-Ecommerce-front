@@ -3,13 +3,14 @@ import Home from "@/components/Home";
 import Login from "@/components/Login";
 import ItemList from "@/components/ItemList";
 import Cart from "@/components/Cart";
+import Confirmation from "@/components/Confirmation";
+import Orders from "@/components/OrderList";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
-    props: true
+    component: Home
   },
   {
     path: "/login",
@@ -18,7 +19,7 @@ const routes = [
   },
   {
     path: "/logout",
-    name: "Login",
+    name: "Logout",
     component: Login
   },
   {
@@ -30,6 +31,29 @@ const routes = [
     path: "/cart",
     name: "Cart",
     component: Cart
+  },
+  {
+    path: "/items/:idUser/:token",
+    name: "ItemListExt",
+    component: ItemList,
+    props: true
+  },
+  {
+    path: "/cart/:idUser/:token",
+    name: "CartExt",
+    component: Cart,
+    props: true
+  },
+  {
+    path: "/confirm",
+    name: "Confirm",
+    component: Confirmation,
+    props: true
+  },
+  {
+    path: "/orders",
+    name: "Orders",
+    component: Orders
   }
 ];
 

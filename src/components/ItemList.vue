@@ -6,7 +6,7 @@
       h3 {{ i.name }}
       p {{ i.description }}
       span {{ i.price }}€ 
-      button(@click="goToConf") conf
+      button(@click="goToConf(i.id)") conf
   span(v-if="loading")
     IconSpinner
     span Chargement...
@@ -15,23 +15,29 @@
 <script>
 import itemService from "@/services/ItemService";
 import IconSpinner from "@/components/IconSpinner";
+import routeLoginMixin from "@/mixins/routeLoginMixin";
 
 export default {
   name: "ItemList",
+  mixins: [routeLoginMixin],
   components : {
     IconSpinner
   },
   data: function() {
     return {
-      items: []
+      items: [],
+      loading: false
     }
   },
   methods: {
     goToConf(idItem) {
-      alert(process.env.VUE_APP_CONF_URL + idItem);
+      const url = process.env.VUE_APP_CONF_URL + "/" + idItem + "/" + this.$store.state.user.id + "/" + this.$store.state.user.token;
+      window.location.href = url;
     }
   },
   mounted() {
+    this.loading = true;
+    this.manageLogin();
     itemService.getAll((response) => this.items = response.content, alert, () => { this.loading = false })
   }
 };

@@ -8,6 +8,7 @@
     <template v-if="$store.state.user">
       <router-link to="/items">Items</router-link> |
       <router-link to="/cart">Cart</router-link> |
+      <router-link to="/orders">Orders</router-link> |
       <router-link to="/logout" >Logout</router-link>
     </template>
   </div>

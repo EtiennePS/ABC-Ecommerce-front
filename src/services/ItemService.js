@@ -8,6 +8,10 @@ class ItemService extends AbstractAbcService {
         this.entityRoute = "/items"
     }
 
+    getById(id, onSuccess, onFail, onDone, options) {
+        this.doGet(this.entityRoute + "/id/" + id, onSuccess, onFail, onDone, options);
+    }
+
     create(data, onSuccess, onFail, onDone) {
         onDone();
         onFail("Item creation is not supported in Ecommerce, please go to the Configurator.");

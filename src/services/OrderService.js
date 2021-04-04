@@ -7,6 +7,10 @@ class OrderService extends AbstractAbcService {
         this.model = Order;
         this.entityRoute = "/orders"
     }
+
+    getUserOrders(onSuccess, onFail, onDone, options) {
+        this.doGet(this.entityRoute + "/mines", onSuccess, onFail, onDone, options);
+    }
 }
 
 const orderService = new OrderService();
